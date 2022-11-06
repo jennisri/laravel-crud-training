@@ -17,8 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('student', [StudentController::class, 'index']);
-Route::post('student', [StudentController::class, 'store']);
+// route student
+// Route::get('student', [StudentController::class, 'index']);
+// Route::post('student', [StudentController::class, 'store']);
+// cara pertama memanggil id saja
+// Route::get('student/{id}', [StudentController::class, 'show']);
+
+// cara kedua langsung echo student
+// model student yang didalam kurung kurawal
+// Route::get('student/{student}', [StudentController::class, 'show']);
+// Route::delete('student/{id}', [StudentController::class, 'destroy']);
+// Route::put('student/{student}', [StudentController::class, 'update']);
+
+
+// resource hanya untuk method index, show, store, update, destroy
+Route::resource('student', StudentController::class)->only([
+    'index', 'show', 'store', 'update', 'destroy'
+])->middleware('auth'); // harus login
+
+
 
 Auth::routes();
 

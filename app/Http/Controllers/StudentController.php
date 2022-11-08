@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -15,15 +16,11 @@ class StudentController extends Controller
     }
 
     // insert data
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         // cara pertama validation
-        $request->validate([
-            'name' => 'required|min:3',
-            'gender' => 'required',
-            'address' => 'required',
-            'email' => 'required|email'
-        ]);
+        // isi validation dipindahkan ke student request
+        $request->validate();
 
         Student::create($request->all());
         return back()->with('success', 'Student ' . $request->name . ' has been created');
@@ -52,15 +49,10 @@ class StudentController extends Controller
 
 
     // update
-    public function update(Student $student, Request $request)
+    public function update(Student $student, StudentRequest $request)
     {
         // cara pertama validation
-        $request->validate([
-            'name' => 'required|min:3',
-            'gender' => 'required',
-            'address' => 'required',
-            'email' => 'required|email'
-        ]);
+        $request->validate();
         
         Student::find($student->id)->update($request->all());
         return back()->with('success', 'Student ' . $request->name . ' has been updated');

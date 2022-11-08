@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CategoryArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,13 @@ Route::get('/', function () {
 Route::resource('student', StudentController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ])->middleware('auth'); // harus login
+
+Route::get('category_article', [CategoryArticleController::class, 'index']);
+Route::post('category_article', [CategoryArticleController::class, 'store']);
+
+// Route::resource('category_article', CategoryArticleController::class)->only([
+//     'index', 'store', 'update', 'destroy'
+// ])->middleware('auth');
 
 
 

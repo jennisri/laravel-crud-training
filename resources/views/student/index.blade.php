@@ -167,7 +167,7 @@
 @endforeach
 
 @foreach($students as $student)
-<!-- Modal Create-->
+<!-- Modal Update-->
 <div class="modal fade" id="updateModal{{ $student->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -183,7 +183,7 @@
 
                     <div class="mb-3">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control @error('email') ? 'is-invalid' : null @enderror" value="{{old('name') ? old('name') : $student->name}}">
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name') ? old('name') : $student->name}}">
 
                         @error('name')
                         <div class="invalid-feedback">
@@ -202,12 +202,12 @@
 
                     <div class="mb-3">
                         <label for="address">Address</label>
-                        <textarea name="address" id="address" cols="30" rows="5" class="form-control">{{ $student->address }}</textarea>
+                        <textarea name="address" id="address" cols="30" rows="5" class="form-control @error('address') is-invalid @enderror" value="{{old('address') ? old('address') : $student->address}}">{{ $student->address }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ $student->email }}">
+                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email') ? old('email') : $student->email}}">
                     </div>
 
                     <div class="modal-footer">
